@@ -40,7 +40,7 @@ window.renderStatistics = function (ctx, players, times) {
   var maxTime = Math.round(getMaxElement(times));
 
   for (var i = 0; i < players.length; i++) {
-    if (players[i] == 'Вы') {
+    if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
