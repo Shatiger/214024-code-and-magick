@@ -40,14 +40,18 @@ window.renderStatistics = function (ctx, players, times) {
   var maxTime = Math.round(getMaxElement(times));
 
   for (var i = 0; i < players.length; i++) {
-    if (players[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
-    }
-    ctx.fillRect(CLOUD_X + GAP + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - Math.round((BAR_HEIGHT * times[i]) / maxTime), BAR_WIDTH, Math.round((BAR_HEIGHT * times[i]) / maxTime));
+    players[i] === 'Вы' ? ctx.fillStyle = 'rgba(255, 0, 0, 1)' : ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
+
+    var barX = CLOUD_X + GAP + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i;
+    var barY = CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - Math.round((BAR_HEIGHT * times[i]) / maxTime);
+    var barHeight = Math.round((BAR_HEIGHT * times[i]) / maxTime);
+
+    var playerY = CLOUD_Y + CLOUD_HEIGHT - GAP;
+    var pointsY = barY - GAP;
+
+    ctx.fillRect(barX, barY, BAR_WIDTH, barHeight);
     ctx.fillStyle = '#000';
-    ctx.fillText(players[i], CLOUD_X + GAP + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y + CLOUD_HEIGHT - GAP);
-    ctx.fillText(Math.round(times[i]), CLOUD_X + GAP + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - GAP - Math.round((BAR_HEIGHT * times[i]) / maxTime));
+    ctx.fillText(players[i], barX, playerY);
+    ctx.fillText(Math.round(times[i]), barX, pointsY);
   }
 };
