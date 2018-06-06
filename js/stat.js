@@ -40,7 +40,7 @@ window.renderStatistics = function (ctx, players, times) {
   var maxTime = Math.round(getMaxElement(times));
 
   for (var i = 0; i < players.length; i++) {
-    players[i] === 'Вы' ? ctx.fillStyle = 'rgba(255, 0, 0, 1)' : ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
+    ctx.fillStyle = players[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + Math.random() + ')';
 
     var barX = CLOUD_X + GAP + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i;
     var barY = CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - Math.round((BAR_HEIGHT * times[i]) / maxTime);
