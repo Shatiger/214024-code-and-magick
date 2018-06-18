@@ -3,8 +3,6 @@
 var setupBlock = document.querySelector('.setup');
 setupBlock.classList.remove('hidden');
 
-document.querySelector('.setup-similar').classList.remove('hidden');
-
 var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 
 var FAMILY_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -40,14 +38,20 @@ var generateCharacters = function (count) {
   return characters;
 };
 
-var renderCharacters = function (characters) {
-  for (var i = 0; i < characters.length; i++) {
+var renderCharacter = function (character) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = characters[i].name + ' ' + characters[i].familyName;
     wizardElement.querySelector('.wizard-coat').style.fill = characters[i].coatColor;
     wizardElement.querySelector('.wizard-eyes').style.fill = characters[i].eyesColor;
-    similarListElement.appendChild(wizardElement);
-  }
+    return wizardElement;
 };
 
-renderCharacters(generateCharacters(4));
+var characters = generateCharacters(4);
+
+var fragment = document.createDocumentFragment();
+for (var i = 0; i < characters.length; i++) {
+  fragment.appendChild(renderCharacter(characters[i]));
+}
+similarListElement.appendChild(fragment);
+
+document.querySelector('.setup-similar').classList.remove('hidden');
