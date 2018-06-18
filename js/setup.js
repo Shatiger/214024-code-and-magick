@@ -39,11 +39,11 @@ var generateCharacters = function (count) {
 };
 
 var renderCharacter = function (character) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
-    wizardElement.querySelector('.setup-similar-label').textContent = characters[i].name + ' ' + characters[i].familyName;
-    wizardElement.querySelector('.wizard-coat').style.fill = characters[i].coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = characters[i].eyesColor;
-    return wizardElement;
+  var wizardElement = similarWizardTemplate.cloneNode(true);
+  wizardElement.querySelector('.setup-similar-label').textContent = character.name + ' ' + character.familyName;
+  wizardElement.querySelector('.wizard-coat').style.fill = character.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = character.eyesColor;
+  return wizardElement;
 };
 
 var characters = generateCharacters(4);
